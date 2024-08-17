@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  interview
+
+  Created by Anh Kiet on 17/08/2024.
+  Copyright © 2024 DAKiet. All rights reserved.
+*/
+
+// MARK: Global
+"global_status" = "Status";
+"global_expired" = "Expired";
+"global_completed" = "Completed";
+"global_daily" = "Daily";
+"global_member" = "Member";
+
+// MARK: Home
+"home_title" = "Yuhuu, your work is almost done!";
+
+// MARK: Setting
+"setting_title" = "Settings";
+"setting_app_settings" = "App settings";
+"setting_language" = "Language";
+"setting_password_security" = "Password & Security";
+"setting_change_password" = "Change password";
+"setting_face_id" = "Face ID";
+"setting_fast_login" = "Fast login";
+"setting_description_fast_login" = "No required password when opening app";
+"setting_help_support" = "Help & Support";
+"setting_share_app" = "Share app";
+"setting_rate_us" = "Rate us";
+"setting_faq" = "FAQ";
+"setting_feedback" = "Feedback";
+"setting_info_app" = "Version %@\n© 2024 %@";
+"setting_logout" = "Sign out";

@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  interview
+
+  Created by Anh Kiet on 17/08/2024.
+  Copyright © 2024 DAKiet. All rights reserved.
+*/
+
+// MARK: Global
+"global_status" = "Trạng thái";
+"global_expired" = "Quá hạn";
+"global_completed" = "Hoàn thành";
+"global_daily" = "Hằng ngày";
+"global_member" = "Thành viên";
+
+// MARK: Home
+"home_title" = "Yuhuu, công việc của bạn sắp hoàn thành rồi!";
+
+// MARK: Setting
+"setting_title" = "Cài đặt";
+"setting_app_settings" = "Cài đặt ứng dụng";
+"setting_language" = "Ngôn ngữ";
+"setting_password_security" = "Mật khẩu & bảo mật";
+"setting_change_password" = "Đổi mật khẩu";
+"setting_face_id" = "Face ID";
+"setting_fast_login" = "Đăng nhập nhanh";
+"setting_description_fast_login" = "Không hỏi lại mật khẩu khi đăng nhập";
+"setting_help_support" = "Trợ giúp";
+"setting_share_app" = "Chia sẻ ứng dụng";
+"setting_rate_us" = "Đánh giá ứng dụng";
+"setting_faq" = "Hỏi Đáp";
+"setting_feedback" = "Phản hồi";
+"setting_info_app" = "Version %@\n© 2024 %@";
+"setting_logout" = "Đăng xuất";
