@@ -16,7 +16,7 @@ class HomeViewController: UIViewController {
         case todoList
     }
     
-    var todayDatas: [String] = []
+    var taskCheckList: [TaskModel] = []
     
     // MARK: Properties
     private let titleView: UIView = {
@@ -49,17 +49,15 @@ class HomeViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
-        tableView.backgroundColor = .clear
-        tableView.contentInsetAdjustmentBehavior = .never
-        tableView.contentInset.bottom = safeAreaInsets.bottom + 60
+        tableView.backgroundColor = .appColor(.background)
+        tableView.contentInset.bottom = 16
+        tableView.showsVerticalScrollIndicator = false
         tableView.register(HomeTitleTableViewCell.self,
                            forCellReuseIdentifier: HomeTitleTableViewCell.identifier)
         tableView.register(HomeWidgetTableViewCell.self,
                            forCellReuseIdentifier: HomeWidgetTableViewCell.identifier)
         tableView.register(HomeTodoListTableViewCell.self,
                            forCellReuseIdentifier: HomeTodoListTableViewCell.identifier)
-        tableView.dataSource = self
-        tableView.delegate = self
         
         return tableView
     }()
@@ -71,6 +69,9 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .appColor(.background)
         
         setupView()
+        taskCheckList = Array(globalData.tasks.prefix(4))
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     // MARK: Layout
@@ -113,8 +114,7 @@ class HomeViewController: UIViewController {
     
     // MARK: Handle actions
     @objc private func didFinishTouchingNotification(_ sender: UIButton) {
-//        notificationView.badge = viewModel.readNotification(noti)
-//        Navigator.navigateToNotificationVC(from: self)
+        Navigator.navigateToNotification(from: self)
     }
 }
 
@@ -124,29 +124,28 @@ extension HomeViewController: UITableViewDataSource & UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return SectionType.allCases.count
     }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard
             let sectionType = SectionType(rawValue: section),
-                sectionType == .todoList
+            sectionType == .todoList,
+            !taskCheckList.isEmpty
         else { return nil }
-        
-        let sectionView = HomeTodoListSectionHeader()
-        sectionView.completion = { [weak self] in
-            guard let this = self else { return }
-            
-            print("SEE More")
-        }
-        
-        return sectionView
+
+        return "To do today"
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         guard
             let sectionType = SectionType(rawValue: section),
-                sectionType == .todoList
+            sectionType == .todoList,
+            !taskCheckList.isEmpty
         else { return 0 }
-        
+
         return 40
     }
     
@@ -159,31 +158,32 @@ extension HomeViewController: UITableViewDataSource & UITableViewDelegate {
         case .widget:
             return 1
         case .todoList:
-            return 1//todayDatas.count
+            return taskCheckList.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let sectionType = SectionType(rawValue: indexPath.section) else { return UITableViewCell() }
-
+        
         switch sectionType {
         case .title:
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: HomeTitleTableViewCell.identifier, for: indexPath
             ) as! HomeTitleTableViewCell
-
+            
             return cell
         case .widget:
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: HomeWidgetTableViewCell.identifier, for: indexPath
             ) as! HomeWidgetTableViewCell
-
+            
             return cell
         case .todoList:
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: HomeTodoListTableViewCell.identifier, for: indexPath
             ) as! HomeTodoListTableViewCell
-
+            cell.setData(taskCheckList[indexPath.row])
+            
             return cell
         }
     }

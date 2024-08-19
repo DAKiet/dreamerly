@@ -49,14 +49,12 @@ class HomeTitleTableViewCell: UITableViewCell {
             titleLabel.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor, constant: 32
             ),
-            titleLabel.topAnchor.constraint(
-                equalTo: contentView.topAnchor, constant: 8
-            ),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             titleLabel.trailingAnchor.constraint(
                 equalTo: contentView.trailingAnchor, constant: -32
             ),
             titleLabel.bottomAnchor.constraint(
-                equalTo: contentView.bottomAnchor, constant: -8
+                equalTo: contentView.bottomAnchor, constant: -16
             )
         ])
     }

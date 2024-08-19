@@ -31,3 +31,10 @@ class Constant {
     static let appBuildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "undefined"
     static let appName: String = "Dreamerly"
 }
+
+struct GlobalData {
+    var tasks: [TaskModel] = []
+    var notifications: [NotificationModel] = []
+}
+
+var globalData: GlobalData = .init()

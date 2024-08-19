@@ -16,6 +16,13 @@
 // MARK: Home
 "home_title" = "Yuhuu, công việc của bạn sắp hoàn thành rồi!";
 
+// MARK: Notification
+"notification_title" = "Thông báo";
+
+// MARK: Tasks
+"task_empty_title" = "You have a free day";
+"task_empty_description" = "Take it easy";
+
 // MARK: Setting
 "setting_title" = "Cài đặt";
 "setting_app_settings" = "Cài đặt ứng dụng";

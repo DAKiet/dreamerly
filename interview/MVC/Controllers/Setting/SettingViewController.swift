@@ -28,7 +28,7 @@ class SettingViewController: BaseViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .none
         tableView.backgroundColor = .appColor(.background)
-        tableView.contentInset.bottom = safeAreaInsets.bottom
+        tableView.contentInset.bottom = 16
         tableView.showsVerticalScrollIndicator = false
         tableView.register(SettingProfileTableViewCell.self,
                            forCellReuseIdentifier: SettingProfileTableViewCell.identifier)

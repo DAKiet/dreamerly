@@ -30,4 +30,15 @@ class Helper {
             .font: font
         ]
     }
+    
+    class func readJSONFile<T: Decodable>(forName name: String) throws -> T {
+        guard let bundleUrl = Bundle.main.url(
+            forResource: name, withExtension: "json"
+        ) else {
+            throw CustomError.jsonNotFound
+        }
+        
+        let data = try Data(contentsOf: bundleUrl)
+        return try JSONDecoder().decode(T.self, from: data)
+    }
 }

@@ -11,20 +11,22 @@ import UIKit
 class HomeTodoListTableViewCell: UITableViewCell {
     
     // MARK: Properties
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 2
-        label.attributedText = .init(
-            string: "home_title".localized(),
-            attributes: Helper.attributes(
-                font: .systemFont(ofSize: 32, weight: .bold),
-                textColor: .appColor(.text),
-                lineHeight: 32, textAlignment: .left
-            )
-        )
+    private let containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .appColor(.container)
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 20
         
-        return label
+        return view
+    }()
+    
+    private let checkBoxView: CheckboxView = {
+        let view = CheckboxView(with: "", textColor: .black, isChecked: false)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = false
+        
+        return view
     }()
     
     // MARK: Initialization
@@ -43,21 +45,40 @@ class HomeTodoListTableViewCell: UITableViewCell {
         selectionStyle = .none
         backgroundColor = .clear
         
-        contentView.addSubview(titleLabel)
+        contentView.addSubview(containerView)
+        containerView.addSubview(checkBoxView)
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(
+            containerView.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor, constant: 16
             ),
-            titleLabel.topAnchor.constraint(
-                equalTo: contentView.topAnchor, constant: 16
+            containerView.topAnchor.constraint(
+                equalTo: contentView.topAnchor, constant: 4
             ),
-            titleLabel.trailingAnchor.constraint(
+            containerView.trailingAnchor.constraint(
                 equalTo: contentView.trailingAnchor, constant: -16
             ),
-            titleLabel.bottomAnchor.constraint(
-                equalTo: contentView.bottomAnchor, constant: -16
+            containerView.bottomAnchor.constraint(
+                equalTo: contentView.bottomAnchor, constant: -4
+            ),
+            containerView.heightAnchor.constraint(equalToConstant: 40),
+            
+            checkBoxView.leadingAnchor.constraint(
+                equalTo: containerView.leadingAnchor, constant: 16
+            ),
+            checkBoxView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            checkBoxView.trailingAnchor.constraint(
+                equalTo: containerView.trailingAnchor, constant: -16
             )
         ])
+    }
+    
+    // MARK: Set data
+    func setData(_ task: TaskModel) {
+        checkBoxView.setData(
+            with: task.title,
+            textColor: UIColor.appColor(.text),
+            isChecked: task.status == .done
+        )
     }
 }

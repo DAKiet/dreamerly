@@ -41,4 +41,18 @@ final class Navigator {
                           animations: nil,
                           completion: { _ in })
     }
+    
+    class func navigateToNotification(from viewController: UIViewController) {
+        let vc = NotificationViewController()
+        vc.hidesBottomBarWhenPushed = true
+        viewController.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    class func navigateToTaskDetail(
+        from viewController: UIViewController, with task: TaskModel
+    ) {
+        let vc = TaskDetailViewController(with: task)
+        vc.hidesBottomBarWhenPushed = true
+        viewController.navigationController?.pushViewController(vc, animated: true)
+    }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 enum AssetsColor: String {
     case primary = "PrimaryColor"
+    case tabbarBackground = "TabbarBackgroundColor"
     case text = "TextColor"
     case subtext = "SubtextColor"
     case background = "BackgroundColor"

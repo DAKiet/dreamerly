@@ -38,7 +38,7 @@ final class RootViewController: UITabBarController {
         print("Dealloc \(identifier)")
     }
     
-    // MARK: Life cycle's
+    // MARK: Life cycle
     override func loadView() {
         super.loadView()
         
@@ -52,11 +52,11 @@ final class RootViewController: UITabBarController {
         super.viewDidLoad()
         
         tabBar.clipsToBounds = true
-        tabBar.barTintColor = .appColor(.background)
+        tabBar.isTranslucent = false
         tabBar.tintColor = .appColor(.primary)
         tabBar.unselectedItemTintColor = .appColor(.primary).withAlphaComponent(0.3)
-//        tabBar.backgroundColor = .appColor(.background)
-        tabBar.isTranslucent = true
+        tabBar.barTintColor = .appColor(.tabbarBackground)
+        tabBar.backgroundColor = .appColor(.tabbarBackground)
         selectedIndex = tabbarType.rawValue
     }
     
@@ -72,14 +72,14 @@ final class RootViewController: UITabBarController {
                 navigationController.tabBarItem.image = UIImage(systemName: "homekit")
                 viewControllers.append(navigationController)
             case .tasks:
-                let wardrobeVC = TasksViewController()
-                let navigationController = BaseNavigationController(rootViewController: wardrobeVC)
+                let tasksVC = TasksViewController()
+                let navigationController = BaseNavigationController(rootViewController: tasksVC)
                 navigationController.tabBarItem.title = "Tasks"
                 navigationController.tabBarItem.image = UIImage(systemName: "calendar.badge.clock")
                 viewControllers.append(navigationController)
             case .setting:
-                let profileVC = SettingViewController()
-                let navigationController = BaseNavigationController(rootViewController: profileVC)
+                let settingVC = SettingViewController()
+                let navigationController = BaseNavigationController(rootViewController: settingVC)
                 navigationController.tabBarItem.title = "Setting"
                 navigationController.tabBarItem.image = UIImage(systemName: "gear")
                 viewControllers.append(navigationController)

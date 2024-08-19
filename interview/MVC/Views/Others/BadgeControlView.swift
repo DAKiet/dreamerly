@@ -15,7 +15,7 @@ class BadgeControlView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
-        label.backgroundColor = .R6
+        label.backgroundColor = .Red.r6
         label.isUserInteractionEnabled = false
         label.isHidden = true
         label.clipsToBounds = true

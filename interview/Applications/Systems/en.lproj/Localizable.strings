@@ -16,6 +16,13 @@
 // MARK: Home
 "home_title" = "Yuhuu, your work is almost done!";
 
+// MARK: Notification
+"notification_title" = "Notifications";
+
+// MARK: Tasks
+"task_empty_title" = "You have a free day";
+"task_empty_description" = "Take it easy";
+
 // MARK: Setting
 "setting_title" = "Settings";
 "setting_app_settings" = "App settings";
